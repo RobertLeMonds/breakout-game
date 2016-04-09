@@ -5,13 +5,26 @@ var ballRadius = 10;
 
 var x = canvas.width/2;
 var y = canvas.height-30;
-var dx = 5;
-var dy = -5;
+var dx = 5; //changes speed of ball & angle
+var dy = -5; //changes angle of ball
 var paddleHeight = 10;
 var paddleWidth = 75;
 var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
+
+//gradient on bricks
+var lingrad = ctx.createLinearGradient(0,0,0,150);
+               
+    lingrad.addColorStop(0, '#00ABEB');
+    lingrad.addColorStop(0.5, '#fff');
+               
+    lingrad.addColorStop(0.5, '#66CC00');
+    lingrad.addColorStop(1, '#fff');
+               
+ var lingrad2 = ctx.createLinearGradient(0,50,0,95);
+    lingrad2.addColorStop(0.5, '#000');
+    lingrad2.addColorStop(1, 'rgba(0,0,0,0)');
 
 //displaying bricks
 var brickRowCount = 4;
@@ -108,7 +121,8 @@ function drawBricks() {
                 bricks[c][r].y = brickY;
                 ctx.beginPath();
                 ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                ctx.fillStyle = "#0095DD";
+                ctx.fillStyle = lingrad;
+                ctx.strokeStyle = lingrad2;
                 ctx.fill();
                 ctx.closePath();
             }
@@ -144,8 +158,8 @@ if(!lives) {
 else {
     x = canvas.width/2;
     y = canvas.height-30;
-    dx = 2;
-    dy = -2;
+    dx = 5;
+    dy = -5;
     paddleX = (canvas.width-paddleWidth)/2;
 }
     }
